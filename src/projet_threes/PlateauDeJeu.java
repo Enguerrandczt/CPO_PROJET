@@ -9,9 +9,19 @@ package projet_threes;
  * @author Evan1204
  */
 public class PlateauDeJeu {
-    //attributs
+    public Tuile [][] matriceTuiles;
+    int nbLigne;
+    int nbColonne;
     
     //constructeur
     
-    //
+    //déplacer vertical droit
+    
+    //déplacer vertical gauche
+    
+    //déplacer horizontal haut
+    
+    //déplacer horizontal bas
+    
+    
 }
