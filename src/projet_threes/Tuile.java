@@ -14,7 +14,10 @@ public class Tuile {
     public int value;
 
     public Tuile() {
-        this.value = value;
+        this.value = 0;
+    }
+    
+    public void activerTuile() {
         Random nbAlea = new Random();
         int n = nbAlea.nextInt(101);
         if (n >= 50) {
