@@ -35,36 +35,47 @@ public class PlateauDeJeu {
         }
     }
     
-    public void créerColonne1(){
+    public void Génerer_Un_Deux() {
         Random nbAlea = new Random();
-
         // Générer un index aléatoire pour placer le 1
-        int index1 = nbAlea.nextInt(nbColonne);
+        int n = nbAlea.nextInt(1);
 
-        // Placer le 1 dans la colonne
-        for (int x = 0; x < nbLigne; x++) {
-            for (int y = 0; y < nbColonne; y++) {
-                if (y == index1) {
-                    matriceTuiles[x][y].activerTuile();
-                } else {
-                    matriceTuiles[x][y].TuileVide();
-                }
-            }
+        if (n==0) {
+            matriceTuiles[nbAlea.nextInt(4)][0].activerTuile();
+            matriceTuiles[0][nbAlea.nextInt(4)].activerTuile();
+        } else if (n==1) {
+            matriceTuiles[nbAlea.nextInt(4)][4].activerTuile();
+            matriceTuiles[4][nbAlea.nextInt(4)].activerTuile();
         }
     }
     
-    public void créerColonne2(){
-        
+@Override
+public String toString() {
+    String PlateauDeJeu = "";
+    PlateauDeJeu += "   | ";
+
+    for (int j = 0; j < nbColonne; j++) {
+        PlateauDeJeu = PlateauDeJeu + "" + j + " | ";
     }
-    
-    
-    //déplacer vertical droit
-    
-    //déplacer vertical gauche
-    
-    //déplacer horizontal haut
-    
-    //déplacer horizontal bas
-    
-    
+    PlateauDeJeu = PlateauDeJeu + "\n";
+    for (int j= 0; j <(nbColonne+1); j++) {
+        PlateauDeJeu +="----";
 }
+    PlateauDeJeu = PlateauDeJeu + "\n";
+
+    for (int i=0; i<nbLigne; i++) {
+        PlateauDeJeu += " " + i + " | ";
+        for (int j=0; j <nbColonne; j++) {
+            PlateauDeJeu+= "" + matriceTuiles[i][j] + " | ";
+        }
+        PlateauDeJeu = PlateauDeJeu + "\n";
+
+        for (int j=0; j<(nbColonne+1); j++) {
+            PlateauDeJeu+= "----";
+        }
+        PlateauDeJeu += "\n";
+    }
+    return PlateauDeJeu;
+    }
+}
+    
