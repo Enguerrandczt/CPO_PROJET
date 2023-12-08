@@ -14,8 +14,7 @@ public class Projet_Threes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Tuile NewTuiles = new Tuile();
+        System.out.println(NewTuiles);
     }
-    ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-    
 }
