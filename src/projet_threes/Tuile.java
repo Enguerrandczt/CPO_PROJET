@@ -19,7 +19,7 @@ public class Tuile {
         int n = nbAlea.nextInt(101);
         if (n >= 50) {
             value = 1;
-        }else{
+        }if (n <= 50){
             value = 2;
         }
     }
@@ -28,8 +28,8 @@ public class Tuile {
         return value;
     }
     
-    public boolean TuileVide() {
-        return value == 0;
+    public int TuileVide() {
+        return 0;
     }
     
     @Override
@@ -39,7 +39,6 @@ public class Tuile {
         } else if (value == 2) {
             return "2";
         }
-        return null;
-    }
-    
-}hhhrfhrhfhrh
+        return "0";
+    }   
+}
