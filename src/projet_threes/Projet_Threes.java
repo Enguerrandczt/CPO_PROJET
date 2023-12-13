@@ -14,7 +14,7 @@ public class Projet_Threes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Tuile NewTuiles = new Tuile();
-        System.out.println(NewTuiles);
+    PartieThrees partie1 = new PartieThrees(4);
+    partie1.LancerPartie();
     }
 }

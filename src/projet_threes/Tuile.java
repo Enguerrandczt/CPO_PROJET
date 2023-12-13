@@ -10,38 +10,41 @@ import java.util.Random;
  *
  * @author Evan1204
  */
+import java.util.Random;
+
 public class Tuile {
-    public int value;
+    private int value;
 
     public Tuile() {
         this.value = 0;
     }
-    
+
     public void activerTuile() {
         Random nbAlea = new Random();
         int n = nbAlea.nextInt(101);
         if (n >= 50) {
             value = 1;
-        }if (n <= 50){
+        } else {
             value = 2;
         }
     }
-    
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    // Retourne true si la tuile est vide, sinon false
+    public int TuileVide() {
+        return 0;
+    }
+
     public int getValue() {
         return value;
     }
     
-    public int TuileVide() {
-        return 0;
-    }
-    
     @Override
     public String toString() {
-        if (value == 1) {
-            return "1";
-        } else if (value == 2) {
-            return "2";
-        }
-        return "0";
+        return (""+value);
     }   
 }
+//1 2 3 6 12 24 48 96 192 384 768  1536 3072
