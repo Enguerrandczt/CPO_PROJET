@@ -46,30 +46,59 @@ public class PlateauDeJeu {
             matriceTuiles[result][nbAlea.nextInt(4)].activerTuile();
         }
     }
+    public void Générer_Un_Deux_Trois(String direction) {
+    Random random = new Random();
+    int value = random.nextInt(3) + 1; // Génère aléatoirement 1, 2 ou 3
+
+    switch (direction) {
+        case "haut":
+            if (matriceTuiles[0][random.nextInt(TaillePlateau)].getValue() == 0) {
+                matriceTuiles[0][random.nextInt(TaillePlateau)].setValue(value);
+            }
+            break;
+        case "bas":
+            if (matriceTuiles[TaillePlateau - 1][random.nextInt(TaillePlateau)].getValue() == 0) {
+                matriceTuiles[TaillePlateau - 1][random.nextInt(TaillePlateau)].setValue(value);
+            }
+            break;
+        case "gauche":
+            if (matriceTuiles[random.nextInt(TaillePlateau)][0].getValue() == 0) {
+                matriceTuiles[random.nextInt(TaillePlateau)][0].setValue(value);
+            }
+            break;
+        case "droite":
+            if (matriceTuiles[random.nextInt(TaillePlateau)][TaillePlateau - 1].getValue() == 0) {
+                matriceTuiles[random.nextInt(TaillePlateau)][TaillePlateau - 1].setValue(value);
+            }
+            break;
+        default:
+            System.out.println("Direction invalide.");
+            break;
+    }
+}
+
    
     public void décaler_Ligne_Bas() {
-        for (int x = 0; x <TaillePlateau - 1; x++) {
-            for (int y = 0; y <TaillePlateau; y++) {
-                int a = matriceTuiles[x][y].getValue();
-                int b = matriceTuiles[x+1][y].getValue();
-                int c = matriceTuiles[x][y].TuileVide();
-                int d = matriceTuiles[x+1][y].TuileVide();
-
-                if (a == b) {
-                    if (a != 2 && b != 1){
-                        matriceTuiles[x][y].setValue(0);
-                        matriceTuiles[x+1][y].setValue(2 * a);
-                    } 
-                } else if (a == 1 && b == 2 || a == 2 && b == 1) {
-                    matriceTuiles[x][y].setValue(0);
-                    matriceTuiles[x+1][y].setValue(3);
-                }else if (a != d){
-                    matriceTuiles[x][y].setValue(0);
-                    matriceTuiles[x+1][y].setValue(a);
+    for (int y = 0; y < TaillePlateau; y++) {
+        for (int x = TaillePlateau - 1; x > 0; x--) {
+            if (matriceTuiles[x][y].getValue() == 0) {
+                // Si la case est vide, déplacer la case supérieure vers le bas
+                if (matriceTuiles[x - 1][y].getValue() != 0) {
+                    matriceTuiles[x][y].setValue(matriceTuiles[x - 1][y].getValue());
+                    matriceTuiles[x - 1][y].setValue(0);
+                }
+            } else {
+                // Si la case contient une tuile, essayer de fusionner avec la case supérieure
+                if (matriceTuiles[x - 1][y].getValue() == matriceTuiles[x][y].getValue()) {
+                    matriceTuiles[x][y].setValue(2 * matriceTuiles[x - 1][y].getValue());
+                    matriceTuiles[x - 1][y].setValue(0);
                 }
             }
         }
     }
+    Générer_Un_Deux_Trois("haut");
+}
+
     
 @Override
 public String toString() {
@@ -100,5 +129,3 @@ public String toString() {
     return PlateauDeJeu;
     }
 }
-
-
