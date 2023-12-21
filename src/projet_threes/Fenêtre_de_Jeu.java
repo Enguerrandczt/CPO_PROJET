@@ -4,6 +4,13 @@
  */
 package projet_threes;
 
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Evan1204
@@ -15,6 +22,35 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
      */
     public Fenêtre_de_Jeu() {
         initComponents();
+        Bienvenue.setLayout(new GridLayout( 1, 1));
+        getContentPane().add(Bienvenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 500, 100));
+        this.pack();
+        this.revalidate();
+
+        JLabel labelBienvenue = new JLabel("Bienvenue sur THREEEEES !");
+        labelBienvenue.setFont(new Font("SansSerif", Font.BOLD, 24)); // Ajustez la police selon vos préférences
+        labelBienvenue.setHorizontalAlignment(JLabel.CENTER); // Centre le texte horizontalement
+        labelBienvenue.setVerticalAlignment(JLabel.CENTER); // Centre le texte verticalement
+        Bienvenue.add(labelBienvenue);
+        
+        //Affiche un bouton facile vers la grille facile
+        Jouer.setLayout(new GridLayout(1, 1));
+        getContentPane().add(Jouer, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 80, 40));
+        this.pack();
+        this.revalidate();
+
+        JButton bouton_Jouer = new JButton("Facile");
+        ActionListener ecouteurClick1 = new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            Fenetre_Plateau nouvelleFenetre = new Fenetre_Plateau();
+            nouvelleFenetre.setVisible(true);
+            dispose();
+            }
+        };
+        bouton_Jouer.addActionListener(ecouteurClick1);
+        Jouer.add(bouton_Jouer);
     }
 
     /**     * This method is called from within the constructor to initialize the form.
@@ -25,18 +61,45 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        Bienvenue = new javax.swing.JPanel();
+        Jouer = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Bienvenue.setBackground(new java.awt.Color(102, 102, 255));
+
+        javax.swing.GroupLayout BienvenueLayout = new javax.swing.GroupLayout(Bienvenue);
+        Bienvenue.setLayout(BienvenueLayout);
+        BienvenueLayout.setHorizontalGroup(
+            BienvenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        BienvenueLayout.setVerticalGroup(
+            BienvenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
         );
+
+        getContentPane().add(Bienvenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 30, 240, 80));
+
+        Jouer.setText("jButton1");
+        getContentPane().add(Jouer, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(102, 255, 102));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 110, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 110, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -80,5 +143,8 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Bienvenue;
+    private javax.swing.JButton Jouer;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
