@@ -6,6 +6,9 @@ package projet_threes;
 
 import java.awt.GridLayout;
 import java.util.Random;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 
 /**
  *
@@ -34,6 +37,42 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
                 Panel_plateau.add(La_Tuile); // ajout au Jpanel PanneauGrille
             }
         }
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    
+                    plateau.décaler_Ligne_Bas();
+                    plateau.Générer_Opposé_Mouvement("bas");
+                   
+                    repaint();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    
+                    plateau.décaler_Ligne_Haut();
+                    plateau.Générer_Opposé_Mouvement("haut");
+                   
+                    repaint();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    
+                    plateau.décaler_Colonne_Droite();
+                    plateau.Générer_Opposé_Mouvement("droite");
+                   
+                    repaint();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    
+                    plateau.décaler_Colonne_Gauche();
+                    plateau.Générer_Opposé_Mouvement("gauche");
+                   
+                    repaint();
+                }
+            }
+        });
+        setFocusable(true);
+        
     }
 
     public void initialiserPartie(){
@@ -57,18 +96,7 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel_plateau.setBackground(new java.awt.Color(51, 153, 255));
-
-        javax.swing.GroupLayout Panel_plateauLayout = new javax.swing.GroupLayout(Panel_plateau);
-        Panel_plateau.setLayout(Panel_plateauLayout);
-        Panel_plateauLayout.setHorizontalGroup(
-            Panel_plateauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        Panel_plateauLayout.setVerticalGroup(
-            Panel_plateauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
+        Panel_plateau.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
 
         pack();
