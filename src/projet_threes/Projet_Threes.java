@@ -14,7 +14,9 @@ public class Projet_Threes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-    PartieThrees partie1 = new PartieThrees(4);
-    partie1.LancerPartie();
+        PartieThrees Partie1 = new PartieThrees(4);
+        Partie1.LancerPartie();
+
     }
+   
 }
