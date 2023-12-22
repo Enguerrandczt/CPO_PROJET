@@ -29,7 +29,7 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
         String filePath = "musique\\La-7ème-cible-_La_-Thème.wav"; 
         player.play(filePath);
         this.taillePlateau = 4;
-        getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, taillePlateau * 40, taillePlateau * 40));
+        getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, taillePlateau * 100, taillePlateau * 120));
         this.pack();
         this.revalidate();
         this.plateau = new PlateauDeJeu(taillePlateau);
