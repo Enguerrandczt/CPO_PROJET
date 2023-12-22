@@ -113,9 +113,9 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Panel_plateau.setBackground(new java.awt.Color(51, 153, 255));
+        Panel_plateau.setBackground(new java.awt.Color(255, 255, 255));
         Panel_plateau.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
+        getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
