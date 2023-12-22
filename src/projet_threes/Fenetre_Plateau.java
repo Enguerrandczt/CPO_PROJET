@@ -24,6 +24,10 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
      */
     public Fenetre_Plateau() {
         initComponents();
+        
+        MusiqueMaestro player = new MusiqueMaestro();
+        String filePath = "musique\\La-7ème-cible-_La_-Thème.wav"; 
+        player.play(filePath);
         this.taillePlateau = 4;
         getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, taillePlateau * 40, taillePlateau * 40));
         this.pack();
@@ -133,6 +137,7 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Fenetre_Plateau().setVisible(true);
+                
             }
         });
     }
