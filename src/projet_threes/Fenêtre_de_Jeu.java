@@ -22,8 +22,11 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
      */
     public Fenêtre_de_Jeu() {
         initComponents();
+        MusiqueMaestro player = new MusiqueMaestro();
+        String filePath = "musique\\Jack-Zankowski-Happy-Wheels-_Main-theme_.wav"; 
+        player.play(filePath);
         Bienvenue.setLayout(new GridLayout( 1, 1));
-        getContentPane().add(Bienvenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 500, 100));
+        getContentPane().add(Bienvenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(50,40,500,100));
         this.pack();
         this.revalidate();
 
@@ -46,6 +49,7 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
             Fenetre_Plateau nouvelleFenetre = new Fenetre_Plateau();
             nouvelleFenetre.setVisible(true);
+            player.stop(); //
             dispose();
             }
         };
@@ -84,6 +88,11 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
         getContentPane().add(Bienvenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 30, 240, 80));
 
         Jouer.setText("jButton1");
+        Jouer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JouerActionPerformed(evt);
+            }
+        });
         getContentPane().add(Jouer, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 102));
@@ -103,6 +112,10 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JouerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JouerActionPerformed
 
     /**
      * @param args the command line arguments
