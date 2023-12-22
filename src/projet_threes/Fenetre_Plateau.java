@@ -25,11 +25,15 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
     public Fenetre_Plateau() {
         initComponents();
         
+        Rien.setLayout(new GridLayout(1, 1));
+        getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 700,1, 1));
+        
         MusiqueMaestro player = new MusiqueMaestro();
         String filePath = "musique\\La-7ème-cible-_La_-Thème.wav"; 
         player.play(filePath);
+        
         this.taillePlateau = 4;
-        getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, taillePlateau * 100, taillePlateau * 120));
+        getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, taillePlateau * 100, taillePlateau * 120));
         this.pack();
         this.revalidate();
         this.plateau = new PlateauDeJeu(taillePlateau);
@@ -109,6 +113,7 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
     private void initComponents() {
 
         Panel_plateau = new javax.swing.JPanel();
+        Rien = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -116,6 +121,7 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
         Panel_plateau.setBackground(new java.awt.Color(255, 255, 255));
         Panel_plateau.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 240));
+        getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -158,5 +164,6 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel_plateau;
+    private javax.swing.JPanel Rien;
     // End of variables declaration//GEN-END:variables
 }

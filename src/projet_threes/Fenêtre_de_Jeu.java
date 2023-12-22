@@ -22,6 +22,10 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
      */
     public Fenêtre_de_Jeu() {
         initComponents();
+        
+        Rien.setLayout(new GridLayout(1, 1));
+        getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 700,1, 1));
+        
         MusiqueMaestro player = new MusiqueMaestro();
         String filePath = "musique\\Jack-Zankowski-Happy-Wheels-_Main-theme_.wav"; 
         player.play(filePath);
@@ -65,9 +69,22 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         Bienvenue = new javax.swing.JPanel();
         Jouer = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        Rien = new javax.swing.JPanel();
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -109,6 +126,19 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 110, 40));
+
+        javax.swing.GroupLayout RienLayout = new javax.swing.GroupLayout(Rien);
+        Rien.setLayout(RienLayout);
+        RienLayout.setHorizontalGroup(
+            RienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        RienLayout.setVerticalGroup(
+            RienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -158,6 +188,8 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Bienvenue;
     private javax.swing.JButton Jouer;
+    private javax.swing.JPanel Rien;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
