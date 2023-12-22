@@ -5,8 +5,13 @@
 package projet_threes;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 /**
  *
@@ -22,6 +27,22 @@ public class Tuiles_Graphique extends JButton {
         this.TuileAssociee = TuileAssociee;
         this.largeur = largeur;
         this.longueur = longueur;
+
+        
+        setBorder(null);
+        
+        // Créez une bordure personnalisée avec une couleur gris foncé
+        Border bordureGrisFonce = BorderFactory.createLineBorder(Color.darkGray);
+
+        // Appliquez cette bordure à votre bouton
+        setBorder(bordureGrisFonce);
+        
+        // Ajoutez du code pour changer la police ici
+        Font policeGrandeGras = getFont().deriveFont(Font.BOLD, 35); // Exemple : style gras, taille 24
+       
+        // Appliquez cette police au bouton
+        setFont(policeGrandeGras);
+        
     }
 
     @Override
@@ -35,13 +56,13 @@ public class Tuiles_Graphique extends JButton {
         // Détermine la couleur en fonction de la valeur de la tuile
         switch (valeur) {
             case 1:
-                couleur = Color.red;
+                couleur = Color.decode("#FFC0CB");
                 break;
             case 2:
-                couleur = Color.blue;
+                couleur = Color.decode("#ADD8E6");
                 break;
             case 0:
-                couleur = Color.black;
+                couleur = Color.gray;
                 break;
             default:
                 couleur = Color.white;
@@ -49,14 +70,14 @@ public class Tuiles_Graphique extends JButton {
         }
 
         // Définit la couleur pour le remplissage du rectangle
-        g.setColor(couleur);
+        g.setColor(couleur.darker());
         g.fillRect(2, 2, w - 2, h - 2);
 
         // Convertit la valeur en texte
         String valeurText = String.valueOf(valeur);
 
         // Définit la couleur pour le texte (blanc pour les couleurs sombres, noir pour les couleurs claires)
-        Color textColor = (couleur.equals(Color.black) || couleur.equals(Color.blue)) ? Color.white : Color.black;
+        Color textColor = (couleur.equals(Color.black) || couleur.equals(Color.gray)) ? Color.white : Color.black;
         g.setColor(textColor);
 
         // Dessine la valeur au centre du rectangle
