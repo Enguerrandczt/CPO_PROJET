@@ -49,6 +49,10 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
                     
                     plateau.décaler_Ligne_Bas();
                     plateau.Générer_Opposé_Mouvement("bas");
+                    plateau.estBloque();
+                    if (plateau.estBloque()==true) {
+                    dispose();   
+                    }
                    
                     repaint();
                 }
@@ -58,19 +62,29 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
                     plateau.Générer_Opposé_Mouvement("haut");
                    
                     repaint();
+                    plateau.estBloque();
+                    if (plateau.estBloque()==true) {
+                    dispose(); 
+                    }
+                    repaint();
+                    
                 }
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     
                     plateau.décaler_Colonne_Droite();
                     plateau.Générer_Opposé_Mouvement("droite");
-                   
+                    if (plateau.estBloque()==true) {
+                    dispose(); 
+                    }
                     repaint();
                 }
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     
                     plateau.décaler_Colonne_Gauche();
                     plateau.Générer_Opposé_Mouvement("gauche");
-                   
+                    if (plateau.estBloque()==true) {
+                    dispose(); 
+                    }
                     repaint();
                 }
             }
