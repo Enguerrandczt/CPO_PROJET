@@ -10,15 +10,19 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
+
 /**
  *
  * @author Evan1204
  */
 public class Fenetre_Plateau extends javax.swing.JFrame {
     PlateauDeJeu plateau;
+    private int compteurTouches = 0; 
     int x;
     int y;
     private int taillePlateau;
+    private PlateauDeJeu plateauPrecedent;
+    private boolean grilleNABougeApres4Touches = false;
     /**
      * Creates new form Fenetre_Plateau
      */
@@ -31,7 +35,7 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
         MusiqueMaestro player = new MusiqueMaestro();
         String filePath = "musique\\La-7ème-cible-_La_-Thème.wav"; 
         player.play(filePath);
-        
+        player.setVolume(0.1f);
         this.taillePlateau = 4;
         getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, taillePlateau * 100, taillePlateau * 120));
         this.pack();
@@ -42,60 +46,76 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
         for (int x = 0; x < taillePlateau; x++) {
             for (int y = 0; y < taillePlateau; y++) {
                 Tuiles_Graphique La_Tuile = new Tuiles_Graphique(plateau.matriceTuiles[x][y], 36, 36);
-                Panel_plateau.add(La_Tuile); // ajout au Jpanel PanneauGrille
+                Panel_plateau.add(La_Tuile); 
             }
         }
+        plateauPrecedent = new PlateauDeJeu(taillePlateau); 
         addKeyListener(new KeyAdapter() {
+            boolean[] touchesPressees = new boolean[4];
             @Override
             public void keyPressed(KeyEvent e) {
+                PlateauDeJeu plateauCopie = copierPlateau(plateau); 
                 
-                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    
-                    plateau.décaler_Ligne_Bas();
-                    plateau.Générer_Opposé_Mouvement("bas");
-                    plateau.estBloque();
-                    if (plateau.estBloque()==true) {
-                    dispose();   
-                    }
-                   
-                    repaint();
+                
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_DOWN:
+                        plateau.décaler_Ligne_Bas();
+                        plateau.Générer_Opposé_Mouvement("bas");
+                        break;
+                    case KeyEvent.VK_UP:
+                        plateau.décaler_Ligne_Haut();
+                        plateau.Générer_Opposé_Mouvement("haut");
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        plateau.décaler_Colonne_Droite();
+                        plateau.Générer_Opposé_Mouvement("droite");
+                        break;
+                    case KeyEvent.VK_LEFT:
+                        plateau.décaler_Colonne_Gauche();
+                        plateau.Générer_Opposé_Mouvement("gauche");
+                        break;
                 }
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    
-                    plateau.décaler_Ligne_Haut();
-                    plateau.Générer_Opposé_Mouvement("haut");
-                   
-                    repaint();
-                    plateau.estBloque();
-                    if (plateau.estBloque()==true) {
-                    dispose(); 
-                    }
-                    repaint();
-                    
-                }
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    
-                    plateau.décaler_Colonne_Droite();
-                    plateau.Générer_Opposé_Mouvement("droite");
-                    if (plateau.estBloque()==true) {
-                    dispose(); 
-                    }
-                    repaint();
-                }
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    
-                    plateau.décaler_Colonne_Gauche();
-                    plateau.Générer_Opposé_Mouvement("gauche");
-                    if (plateau.estBloque()==true) {
-                    dispose(); 
-                    }
-                    repaint();
-                }
+                
+                PlateauDeJeu plateauApresMouvement = copierPlateau(plateau); 
+            if (e.getKeyCode()==KeyEvent.VK_DOWN) {
+                touchesPressees[0]=true;
+            } else if (e.getKeyCode()==KeyEvent.VK_UP) {
+                touchesPressees[1]=true;
+            } else if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+                touchesPressees[2]=true;
+            } else if (e.getKeyCode()==KeyEvent.VK_LEFT) {
+                touchesPressees[3]=true;
             }
-        });
-        setFocusable(true);
-        
+
+            // Vérification des mouvements après les quatre touches spécifiques
+            if (toutesTouchesPressees(touchesPressees)) {
+                if (grilleNAPasChange(plateauCopie, plateauApresMouvement)) {
+                    Terminus nouvelleFenetre2 = new Terminus();
+                    nouvelleFenetre2.setVisible(true);
+                    player.stop();
+                }
+                // Réinitialisation
+                touchesPressees = new boolean[4];
+            }
+
+            plateauPrecedent = copierPlateau(plateau); // Mise à jour du plateau précédent
+            repaint();
+        }
+    });
+    setFocusable(true);
+
+}
+    private boolean toutesTouchesPressees(boolean[] touches) {
+    for (boolean touchePressee : touches) {
+        if (!touchePressee) {
+            return false;
+        }
     }
+    return true;
+}
+    private boolean grilleNAPasChange(PlateauDeJeu avant, PlateauDeJeu apres) {
+    return avant.estIdentique(apres);
+}
 
     public void initialiserPartie(){
         Random random = new Random();
@@ -160,6 +180,15 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
                 
             }
         });
+    }
+    private PlateauDeJeu copierPlateau(PlateauDeJeu plateauOriginal) {
+        PlateauDeJeu copiePlateau = new PlateauDeJeu(taillePlateau);
+        for (int x = 0; x < taillePlateau; x++) {
+            for (int y = 0; y < taillePlateau; y++) {
+                copiePlateau.matriceTuiles[x][y].setValue(plateauOriginal.matriceTuiles[x][y].getValue());
+            }
+        }
+        return copiePlateau;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

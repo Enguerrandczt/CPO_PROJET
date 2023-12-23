@@ -29,6 +29,7 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
         MusiqueMaestro player = new MusiqueMaestro();
         String filePath = "musique\\Jack-Zankowski-Happy-Wheels-_Main-theme_.wav"; 
         player.play(filePath);
+        player.setVolume(0.02f);
         Bienvenue.setLayout(new GridLayout( 1, 1));
         getContentPane().add(Bienvenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(50,40,500,100));
         this.pack();
