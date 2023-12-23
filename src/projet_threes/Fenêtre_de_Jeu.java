@@ -15,6 +15,7 @@ import javax.swing.JLabel;
  * @author Evan1204
  */
 public class Fenêtre_de_Jeu extends javax.swing.JFrame {
+
     private MusiqueMaestro player;
 
     /**
@@ -22,7 +23,7 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
      */
     public Fenêtre_de_Jeu() {
         initComponents();
-        
+
         JLabel backgroundLabel = new JLabel();
         String imagePath = "musique\\acceuil.png";
         backgroundLabel.setIcon(new ImageIcon(imagePath));
@@ -35,9 +36,6 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
         String filePath = "musique\\Jack-Zankowski-Happy-Wheels-_Main-theme_.wav";
         player.play(filePath);
         player.setVolume(0.02f);
-        
-        
-        
 
         //Affiche un bouton facile vers la grille facile
 //        Jouer.setLayout(new GridLayout(1, 1));
@@ -57,7 +55,7 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
             }
         };
         bouton_Jouer.addActionListener(ecouteurClick1);
-        
+
     }
 
     /**
@@ -125,18 +123,18 @@ public class Fenêtre_de_Jeu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+
         Fenetre_Plateau nouvelleFenetre = new Fenetre_Plateau();
-                nouvelleFenetre.setVisible(true);
-                player.stop(); //
-                dispose(); // TODO add your handling code here:
+        nouvelleFenetre.setVisible(true);
+        player.stop(); //
+        dispose(); // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     Fenetre_Rules nouvelleFenetre = new Fenetre_Rules();
-                nouvelleFenetre.setVisible(true);
-                player.stop(); //
-                dispose();   // TODO add your handling code here:
+        Fenetre_Rules nouvelleFenetre = new Fenetre_Rules();
+        nouvelleFenetre.setVisible(true);
+        player.stop(); //
+        dispose();   // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

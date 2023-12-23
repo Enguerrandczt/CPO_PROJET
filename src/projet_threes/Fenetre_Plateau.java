@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+Fenêtre_de_Jeu est une interface graphique pour afficher le plateau de jeu de Threes.
  */
 package projet_threes;
 
@@ -11,36 +10,36 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-
-
 /**
  *
  * @author Evan1204
  */
 public class Fenetre_Plateau extends javax.swing.JFrame {
+
     PlateauDeJeu plateau;
-    private int compteurTouches = 0; 
+    private int compteurTouches = 0;
     int x;
     int y;
     private int taillePlateau;
     private PlateauDeJeu plateauPrecedent;
     private boolean grilleNABougeApres4Touches = false;
+
     /**
      * Creates new form Fenetre_Plateau
      */
     public Fenetre_Plateau() {
         initComponents();
 
-    JLabel backgroundLabel = new JLabel();
-    String imagePath = "musique\\FOND.png"; 
-    backgroundLabel.setIcon(new ImageIcon(imagePath));
-    getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        JLabel backgroundLabel = new JLabel();
+        String imagePath = "musique\\FOND.png";
+        backgroundLabel.setIcon(new ImageIcon(imagePath));
+        getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-    Rien.setLayout(new GridLayout(1, 1));
-    getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 720, 1, 1));
-    
+        Rien.setLayout(new GridLayout(1, 1));
+        getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 720, 1, 1));
+
         MusiqueMaestro player = new MusiqueMaestro();
-        String filePath = "musique\\La-7ème-cible-_La_-Thème.wav"; 
+        String filePath = "musique\\La-7ème-cible-_La_-Thème.wav";
         player.play(filePath);
         player.setVolume(0.1f);
         this.taillePlateau = 4;
@@ -53,17 +52,17 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
         for (int x = 0; x < taillePlateau; x++) {
             for (int y = 0; y < taillePlateau; y++) {
                 Tuiles_Graphique La_Tuile = new Tuiles_Graphique(plateau.matriceTuiles[x][y], 36, 36);
-                Panel_plateau.add(La_Tuile); 
+                Panel_plateau.add(La_Tuile);
             }
         }
-        plateauPrecedent = new PlateauDeJeu(taillePlateau); 
+        plateauPrecedent = new PlateauDeJeu(taillePlateau);
         addKeyListener(new KeyAdapter() {
             boolean[] touchesPressees = new boolean[4];
+
             @Override
             public void keyPressed(KeyEvent e) {
-                PlateauDeJeu plateauCopie = copierPlateau(plateau); 
-                
-                
+                PlateauDeJeu plateauCopie = copierPlateau(plateau);
+
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_DOWN:
                         plateau.décaler_Ligne_Bas();
@@ -82,54 +81,71 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
                         plateau.Générer_Opposé_Mouvement("gauche");
                         break;
                 }
-                
-                PlateauDeJeu plateauApresMouvement = copierPlateau(plateau); 
-            if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-                touchesPressees[0]=true;
-            } else if (e.getKeyCode()==KeyEvent.VK_UP) {
-                touchesPressees[1]=true;
-            } else if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-                touchesPressees[2]=true;
-            } else if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-                touchesPressees[3]=true;
-            }
 
-            // Vérification des mouvements après les quatre touches spécifiques
-            if (toutesTouchesPressees(touchesPressees)) {
-                if (grilleNAPasChange(plateauCopie, plateauApresMouvement)) {
-                    Terminus nouvelleFenetre2 = new Terminus();
-                    nouvelleFenetre2.setVisible(true);
-                    player.stop();
+                PlateauDeJeu plateauApresMouvement = copierPlateau(plateau);
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    touchesPressees[0] = true;
+                } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    touchesPressees[1] = true;
+                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    touchesPressees[2] = true;
+                } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    touchesPressees[3] = true;
                 }
-                // Réinitialisation
-                touchesPressees = new boolean[4];
+
+                // Vérification des mouvements après les quatre touches spécifiques
+                if (toutesTouchesPressees(touchesPressees)) {
+                    if (grilleNAPasChange(plateauCopie, plateauApresMouvement)) {
+                        Terminus nouvelleFenetre2 = new Terminus();
+                        nouvelleFenetre2.setVisible(true);
+                        player.stop();
+                    }
+                    // Réinitialisation
+                    touchesPressees = new boolean[4];
+                }
+
+                plateauPrecedent = copierPlateau(plateau); // Mise à jour du plateau précédent
+                repaint();
             }
+        });
+        setFocusable(true);
 
-            plateauPrecedent = copierPlateau(plateau); // Mise à jour du plateau précédent
-            repaint();
-        }
-    });
-    setFocusable(true);
+    }
 
-}
+    /**
+     * prend un tableau de booléens représentant les touches et renvoie true si
+     * toutes les touches sont pressées, sinon false.
+     */
     private boolean toutesTouchesPressees(boolean[] touches) {
-    for (boolean touchePressee : touches) {
-        if (!touchePressee) {
-            return false;
+        for (boolean touchePressee : touches) {
+            if (!touchePressee) {
+                return false;
+            }
         }
+        return true;
     }
-    return true;
-}
-    private boolean grilleNAPasChange(PlateauDeJeu avant, PlateauDeJeu apres) {
-    return avant.estIdentique(apres);
-}
 
-    public void initialiserPartie(){
-        Random random = new Random();
-        plateau.Générer_Un_Deux_Trois(random.nextInt(3),random.nextInt(3),1);
-        plateau.Générer_Un_Deux_Trois(random.nextInt(3),random.nextInt(3),2);
+    /**
+     * grilleNAPasChange utilise la méthode estIdentique de la classe
+     * PlateauDeJeu pour comparer si les deux plateaux sont identiques, et
+     * renvoie true si les plateaux sont identiques, indiquant qu'aucun
+     * changement n'a eu lieu.
+     */
+    private boolean grilleNAPasChange(PlateauDeJeu avant, PlateauDeJeu apres) {
+        return avant.estIdentique(apres);
     }
-    
+
+    /**
+     * initialiserPartie initialise une nouvelle partie du jeu en utilisant un
+     * objet Random pour générer les positions aléatoires des 1 et des 2 sur le
+     * plateau.
+     */
+    public void initialiserPartie() {
+        Random random = new Random();
+        plateau.Générer_Un_Deux_Trois(random.nextInt(3), random.nextInt(3), 1);
+        plateau.Générer_Un_Deux_Trois(random.nextInt(3), random.nextInt(3), 2);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -141,6 +157,7 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
 
         Panel_plateau = new javax.swing.JPanel();
         Rien = new javax.swing.JPanel();
+        Game_rules = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -150,8 +167,20 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
         getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 240));
         getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, -1, -1));
 
+        Game_rules.setText("jButton1");
+        Game_rules.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Game_rulesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Game_rules, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Game_rulesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Game_rulesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Game_rulesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,10 +213,11 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Fenetre_Plateau().setVisible(true);
-                
+
             }
         });
     }
+
     private PlateauDeJeu copierPlateau(PlateauDeJeu plateauOriginal) {
         PlateauDeJeu copiePlateau = new PlateauDeJeu(taillePlateau);
         for (int x = 0; x < taillePlateau; x++) {
@@ -199,6 +229,7 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Game_rules;
     private javax.swing.JPanel Panel_plateau;
     private javax.swing.JPanel Rien;
     // End of variables declaration//GEN-END:variables
