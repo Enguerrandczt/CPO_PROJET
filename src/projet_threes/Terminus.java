@@ -4,10 +4,13 @@
  */
 package projet_threes;
 
+import java.awt.GridLayout;
 import javax.swing.JFrame;
 
 import java.util.Arrays;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
@@ -21,6 +24,13 @@ public class Terminus extends javax.swing.JFrame {
      */
     public Terminus() {
         initComponents();
+        Rien.setLayout(new GridLayout(1, 1));
+        getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, 0, 0));
+        JLabel backgroundLabel = new JLabel();
+    String imagePath = "musique\\Street-fighterGameOver.png"; 
+    backgroundLabel.setIcon(new ImageIcon(imagePath));
+    getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         player = new MusiqueMaestro();
         String filePath = "musique\\Street-Fighter-2-The-Animated-Movie-OST-Korn-Blind.wav";
         player.play(filePath);
@@ -38,8 +48,11 @@ public class Terminus extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        Rien = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(640, 480));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Rejouer");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -47,6 +60,7 @@ public class Terminus extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 195, -1, -1));
 
         jButton2.setText("Abandonner");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -54,27 +68,20 @@ public class Terminus extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 195, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jButton1)
-                .addGap(30, 30, 30)
-                .addComponent(jButton2)
-                .addContainerGap(88, Short.MAX_VALUE))
+        javax.swing.GroupLayout RienLayout = new javax.swing.GroupLayout(Rien);
+        Rien.setLayout(RienLayout);
+        RienLayout.setHorizontalGroup(
+            RienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(195, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(82, 82, 82))
+        RienLayout.setVerticalGroup(
+            RienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,6 +152,7 @@ public class Terminus extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Rien;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
