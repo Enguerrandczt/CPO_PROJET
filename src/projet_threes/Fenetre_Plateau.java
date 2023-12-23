@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.util.Random;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 
 
@@ -28,16 +30,21 @@ public class Fenetre_Plateau extends javax.swing.JFrame {
      */
     public Fenetre_Plateau() {
         initComponents();
-        
-        Rien.setLayout(new GridLayout(1, 1));
-        getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 700,1, 1));
-        
+
+    JLabel backgroundLabel = new JLabel();
+    String imagePath = "musique\\FOND.png"; 
+    backgroundLabel.setIcon(new ImageIcon(imagePath));
+    getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+    Rien.setLayout(new GridLayout(1, 1));
+    getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 720, 1, 1));
+    
         MusiqueMaestro player = new MusiqueMaestro();
         String filePath = "musique\\La-7ème-cible-_La_-Thème.wav"; 
         player.play(filePath);
         player.setVolume(0.1f);
         this.taillePlateau = 4;
-        getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, taillePlateau * 100, taillePlateau * 120));
+        getContentPane().add(Panel_plateau, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 226, 368, 336));
         this.pack();
         this.revalidate();
         this.plateau = new PlateauDeJeu(taillePlateau);
