@@ -5,7 +5,6 @@
 package projet_threes;
 
 import java.awt.GridLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -13,25 +12,19 @@ import javax.swing.JLabel;
  *
  * @author engue
  */
-public class Terminus extends javax.swing.JFrame {
-    private MusiqueMaestro player;
+public class Fenetre_Rules extends javax.swing.JFrame {
 
     /**
-     * Creates new form Terminus
+     * Creates new form Fenetre_Rules
      */
-    public Terminus() {
+    public Fenetre_Rules() {
         initComponents();
-        Rien.setLayout(new GridLayout(1, 1));
-        getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, 0, 0));
         JLabel backgroundLabel = new JLabel();
-    String imagePath = "musique\\Street-fighterGameOver.png"; 
+    String imagePath = "musique\\Rules.png"; 
     backgroundLabel.setIcon(new ImageIcon(imagePath));
     getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        player = new MusiqueMaestro();
-        String filePath = "musique\\Street-Fighter-2-The-Animated-Movie-OST-Korn-Blind.wav";
-        player.play(filePath);
-        player.setVolume(0.1f);
+        Rien.setLayout(new GridLayout(1, 1));
+    getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 750, 1, 1));
     }
 
     /**
@@ -45,72 +38,41 @@ public class Terminus extends javax.swing.JFrame {
 
         Rien = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(640, 512));
+        setPreferredSize(new java.awt.Dimension(529, 750));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout RienLayout = new javax.swing.GroupLayout(Rien);
         Rien.setLayout(RienLayout);
         RienLayout.setHorizontalGroup(
             RienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 203, Short.MAX_VALUE)
         );
         RienLayout.setVerticalGroup(
             RienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 123, Short.MAX_VALUE)
         );
 
-        getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
+        getContentPane().add(Rien, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
 
-        jButton1.setText("Rejouer");
+        jButton1.setText("Vous êtes prêts ?");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, -1, -1));
-
-        jButton2.setText("Abandonner");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 680, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        for (java.awt.Window window : java.awt.Window.getWindows()) {
-            if (window instanceof Fenetre_Plateau) {
-                window.dispose();
-                
-            }
-        }
-
-        this.dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        for (java.awt.Window window : java.awt.Window.getWindows()) {
-            if (window instanceof Fenetre_Plateau) {
-                player.stop();
-
-                window.dispose();
-
-                Fenetre_Plateau nouvelleFenetre = new Fenetre_Plateau();
+ Fenetre_Plateau nouvelleFenetre = new Fenetre_Plateau();
                 nouvelleFenetre.setVisible(true);
-
-            }
-            this.dispose();
-        }
-
-        // TODO add your handling code here:
+                //
+                dispose(); // TODO add your handling code here:
+             // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -130,20 +92,20 @@ public class Terminus extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Terminus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fenetre_Rules.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Terminus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fenetre_Rules.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Terminus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fenetre_Rules.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Terminus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fenetre_Rules.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Terminus().setVisible(true);
+                new Fenetre_Rules().setVisible(true);
             }
         });
     }
@@ -151,6 +113,5 @@ public class Terminus extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Rien;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
